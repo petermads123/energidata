@@ -261,11 +261,11 @@ def get_dso_tariffs(
 
 # Testing
 if __name__ == "__main__":
-    # df_spot = get_day_ahead_prices(start="2025-10-26", bidding_zone="DK1")
+    df_spot = get_day_ahead_prices(start="2025-10-26", bidding_zone="DK1")
     # df_imbalance = get_imbalance_prices(start="2025-10-26", bidding_zone="DK1")
-    df_tariffs = get_dso_tariffs(
-        start="2025-10-26", dso="Radius Elnet A/S", tariff="Nettarif C"
-    )
-    # print(df_spot)
+    # df_tariffs = get_dso_tariffs(
+    #     start="2025-10-26", dso="Radius Elnet A/S", tariff="Nettarif C"
+    # )
+    print(df_spot)
     # print(df_imbalance)
-    print(df_tariffs)
+    # print(df_tariffs)

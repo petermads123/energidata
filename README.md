@@ -1,5 +1,7 @@
 # Energi data APIs
 This repo is for implementing various energi data related APIs
+Install via:
+    pip install git+https://github.com/petermads123/energi_data_api.git@main
 
 ## Energidataservice
 ### Energinets energidataservice:
