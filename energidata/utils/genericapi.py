@@ -7,7 +7,7 @@ import zipfile
 import requests
 import xmltodict
 
-from energi_data_api.utils.wrappers import retry
+from energidata.utils.wrappers import retry
 
 
 class GenericAPI:
