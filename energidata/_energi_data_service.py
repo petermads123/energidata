@@ -4,8 +4,8 @@ from typing import Any
 
 import pandas as pd
 
-from energidata.utils.genericapi import GenericAPI
-from energidata.utils.utils import fix_tz
+from energidata.utils._genericapi import GenericAPI
+from energidata.utils._utils import fix_tz
 
 
 class EnergiDataServiceAPI(GenericAPI):
