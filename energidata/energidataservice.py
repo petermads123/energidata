@@ -4,6 +4,7 @@ import json
 
 import pandas as pd
 import requests
+from tools import to_timestamp
 
 _BASE_URL = "https://api.energidataservice.dk/dataset/"
 
@@ -81,17 +82,17 @@ def _get_prices(
 
 
 def get_dayahead_prices(
-    start: pd.Timestamp,
-    end: pd.Timestamp | None = None,
+    start: pd.Timestamp | str,
+    end: pd.Timestamp | str | None = None,
     bz: str | list[str] = "DK2",
     tz_aware: bool = True,
 ) -> pd.DataFrame:
     """Get day-ahead price data from EnergiDataService.
 
     Args:
-        start (pd.Timestamp): start timestamp for the data.
+        start (pd.Timestamp | str): start timestamp for the data.
             If tz-naive, CET timezone is assumed.
-        end (pd.Timestamp | None): end timestamp for the data (excluded).
+        end (pd.Timestamp | str | None): end timestamp for the data (excluded).
             If tz-naive, CET timezone is assumed.
             If None, EOD of start is used.
             Default is None.
@@ -108,8 +109,8 @@ def get_dayahead_prices(
     """
     return _get_prices(
         endpoint="DayAheadPrices",
-        start=start,
-        end=end,
+        start=to_timestamp(start, tz_in="CET", tz_out="CET"),
+        end=to_timestamp(end, tz_in="CET", tz_out="CET") if end is not None else None,
         bz=bz,
         data_cols="DayAheadPriceEUR",
         tz_aware=tz_aware,
@@ -117,17 +118,17 @@ def get_dayahead_prices(
 
 
 def get_imbalance_prices(
-    start: pd.Timestamp,
-    end: pd.Timestamp | None = None,
+    start: pd.Timestamp | str,
+    end: pd.Timestamp | str | None = None,
     bz: str | list[str] = "DK1",
     tz_aware: bool = True,
 ) -> pd.DataFrame:
     """Get imbalance price data from EnergiDataService.
 
     Args:
-        start (pd.Timestamp): start timestamp for the data.
+        start (pd.Timestamp | str): start timestamp for the data.
             If tz-naive, CET timezone is assumed.
-        end (pd.Timestamp | None): end timestamp for the data (excluded).
+        end (pd.Timestamp | str | None): end timestamp for the data (excluded).
             If tz-naive, CET timezone is assumed.
             If None, EOD of start is used.
             Default is None.
@@ -144,8 +145,8 @@ def get_imbalance_prices(
     """
     return _get_prices(
         endpoint="ImbalancePrice",
-        start=start,
-        end=end,
+        start=to_timestamp(start, tz_in="CET", tz_out="CET"),
+        end=to_timestamp(end, tz_in="CET", tz_out="CET") if end is not None else None,
         bz=bz,
         data_cols="ImbalancePriceEUR",
         tz_aware=tz_aware,
@@ -153,8 +154,8 @@ def get_imbalance_prices(
 
 
 if __name__ == "__main__":
-    start = pd.Timestamp("2026-04-01")
-    end = pd.Timestamp("2026-04-04")
+    start = "2026-04-01"
+    end = "2026-04-04"
     bzs = ["DK1", "DK2"]
 
     da_prices = get_dayahead_prices(start, end, bzs)

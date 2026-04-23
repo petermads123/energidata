@@ -18,6 +18,7 @@ dependencies = [
   "pandas",
   "requests",
   "xmltodict",
+  "tools @ git+https://github.com/petermads123/tools.git@main",
 ]
 
 # Optional groups (e.g. dev dependencies)
