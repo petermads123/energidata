@@ -1,4 +1,4 @@
-# Energidata
+# Energidata (DEPRECATED)
 This repo is for implementing various energi data related APIs
 Install via:
     pip install git+https://github.com/petermads123/energidata.git@main
